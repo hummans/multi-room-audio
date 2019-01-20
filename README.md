@@ -27,5 +27,13 @@ to start streaming the Line-out of my TV to the network, i set up a small script
 
      arecord --device=plughw:1,0 --format S16_LE -c2 -r48000 /tmp/snapfifo
      
+This command gets a buffer overflow from time to time. As a workaround I wrote this script:
+
+     #!/bin/bash
+     while [ true ] ; do
+       arecord --device=plughw:1,0 --format S16_LE -c2 -r48000 /tmp/snapfifo
+       sleep 1
+     done
+
 ### Conclusion
 It worked! But the network became heavily loaded and sometimes nearly unusable.
